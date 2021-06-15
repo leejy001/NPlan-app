@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import UserPanel from "./Panel/UserPanel";
 
 const AppNavbar = ({ onSearchChange }) => {

@@ -5,7 +5,7 @@ import firebase from "firebase/app";
 import { dbService } from "../../firebase";
 import "../form.css";
 
-const CardPanel = ({ index, planObj, isOwner }) => {
+const CardPanel = ({ index, planObj }) => {
   const colors = [
     {
       primaryColor: "#5D93E1",
@@ -70,74 +70,68 @@ const CardPanel = ({ index, planObj, isOwner }) => {
 
   return (
     <>
-      {isOwner && (
-        <>
-          <div className="card-wrapper mr-5">
-            <div
-              className="card-top"
-              style={{ backgroundColor: colors[index % 5].primaryColor }}
-            ></div>
-            <div className="plan-holder">
-              <span
-                className="card-holder"
-                style={{
-                  backgroundColor: colors[index % 5].secondaryColor,
-                  borderRadius: "10px",
-                }}
-              >
-                {planObj.title}
-              </span>
-              <p>{planObj.description}</p>
-              <div
-                style={{ position: "absolute", right: "20px", bottom: "20px" }}
-              >
-                <FaEdit
-                  onClick={onShow}
-                  style={{ color: colors[index % 5].primaryColor }}
-                />
-                <FaTrashAlt
-                  onClick={onDeleteClick}
-                  style={{ color: colors[index % 5].primaryColor }}
-                />
-              </div>
-            </div>
+      <div className="card-wrapper mr-5">
+        <div
+          className="card-top"
+          style={{ backgroundColor: colors[index % 5].primaryColor }}
+        ></div>
+        <div className="plan-holder">
+          <span
+            className="card-holder"
+            style={{
+              backgroundColor: colors[index % 5].secondaryColor,
+              borderRadius: "10px",
+            }}
+          >
+            {planObj.title}
+          </span>
+          <p>{planObj.description}</p>
+          <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
+            <FaEdit
+              onClick={onShow}
+              style={{ color: colors[index % 5].primaryColor }}
+            />
+            <FaTrashAlt
+              onClick={onDeleteClick}
+              style={{ color: colors[index % 5].primaryColor }}
+            />
           </div>
-          <Modal show={show} onHide={onClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>계획 수정</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form onSubmit={onSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>계획 이름</Form.Label>
-                  <Form.Control
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    type="text"
-                    value={newTitle}
-                  />
-                </Form.Group>
+        </div>
+      </div>
+      <Modal show={show} onHide={onClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>계획 수정</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={onSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>계획 이름</Form.Label>
+              <Form.Control
+                onChange={(e) => setNewTitle(e.target.value)}
+                type="text"
+                value={newTitle}
+              />
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>대략적인 설명</Form.Label>
-                  <Form.Control
-                    onChange={(e) => setNewDescription(e.target.value)}
-                    type="text"
-                    value={newDescription}
-                  />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={onClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={onSubmit}>
-                계획 수정
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </>
-      )}
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>대략적인 설명</Form.Label>
+              <Form.Control
+                onChange={(e) => setNewDescription(e.target.value)}
+                type="text"
+                value={newDescription}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={onClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={onSubmit}>
+            계획 수정
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

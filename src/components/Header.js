@@ -26,11 +26,9 @@ const Header = () => {
       title: title,
       description: description,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      createBy: {
-        id: user.uid,
-        name: user.displayName,
-        image: user.photoURL,
-      },
+      createrId: user.uid,
+      createrName: user.displayName,
+      createrImage: user.photoURL,
     };
 
     try {

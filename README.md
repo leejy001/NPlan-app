@@ -41,4 +41,7 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 **`6. CardList 추가, firebase를 이용하여 실시간으로 보여주는 방식으로 구현`**
 
 **`7. 카드부분 Plan Edit, Delete 기능 추가`**
-# NPlan-app
+
+**`8. plan title 검색 기능 추가`**
+
+**`9. MainPage에서 CardList가 plan을 보여주는 방법 수정`**

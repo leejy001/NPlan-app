@@ -94,7 +94,7 @@ const RegisterPage = () => {
             <p>비밀번호가 서로 일치하지 않습니다.</p>
           )}
         {errorFormSubmit && <p>{errorFormSubmit}</p>}
-        <input href="/login" type="submit" disabled={loadig} />
+        <input type="submit" disabled={loadig} />
         <Link style={{ color: "gray", textDecoration: "none" }} to="/login">
           이미 아이디가 있다면...
         </Link>

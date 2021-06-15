@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { dbService } from "../../firebase";
 import "../form.css";
 import CardPanel from "../Panel/CardPanel";
@@ -7,10 +6,10 @@ import AppNavbar from "../AppNavbar";
 import Footer from "../Footer";
 import Header from "../Header";
 
-const MainPage = () => {
+const MainPage = ({ userUid }) => {
   const [plans, setPlans] = useState([]);
-  const user = useSelector((state) => state.user.currentUser);
   const [searchTerm, setSearchTerm] = useState("");
+  console.log(userUid);
 
   const onSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -19,6 +18,7 @@ const MainPage = () => {
   useEffect(() => {
     dbService
       .collection("plans")
+      .where("createrId", "==", userUid)
       .orderBy("timestamp", "asc")
       .onSnapshot((snapshot) => {
         const planArray = snapshot.docs.map((doc) => ({
@@ -29,7 +29,7 @@ const MainPage = () => {
           setPlans(planArray);
         }, 200);
       });
-  }, []);
+  }, [userUid]);
 
   const CardList = (
     <div id="main-body">
@@ -43,14 +43,10 @@ const MainPage = () => {
             ) {
               return plan;
             }
+            return false;
           })
           .map((plan, index) => (
-            <CardPanel
-              key={plan.id}
-              index={index}
-              planObj={plan}
-              isOwner={plan.createBy.id === user.uid}
-            />
+            <CardPanel key={plan.id} index={index} planObj={plan} />
           ))}
       </div>
     </div>
