@@ -10,6 +10,7 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const userRef = dbService.collection("users").doc(user.uid);
 
   const onClose = () => setShow(false);
   const onShow = () => setShow(true);
@@ -32,7 +33,7 @@ const Header = () => {
     };
 
     try {
-      await dbService.collection("plans").add(newPlan);
+      await userRef.collection("plans").add(newPlan);
       // 초기화
       setTitle("");
       setDescription("");

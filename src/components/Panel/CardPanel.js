@@ -4,6 +4,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import firebase from "firebase/app";
 import { dbService } from "../../firebase";
 import "../form.css";
+import { useSelector } from "react-redux";
 
 const CardPanel = ({ index, planObj }) => {
   const colors = [
@@ -32,6 +33,8 @@ const CardPanel = ({ index, planObj }) => {
   const [show, setShow] = useState(false);
   const [newTitle, setNewTitle] = useState(planObj.title);
   const [newDescription, setNewDescription] = useState(planObj.description);
+  const user = useSelector((state) => state.user.currentUser);
+  const userRef = dbService.collection("users").doc(user.uid);
 
   const onClose = () => setShow(false);
   const onShow = () => setShow(true);
@@ -45,7 +48,7 @@ const CardPanel = ({ index, planObj }) => {
 
   const editPlan = async () => {
     try {
-      await dbService.collection("plans").doc(planObj.id).update({
+      await userRef.collection("plans").doc(planObj.id).update({
         title: newTitle,
         description: newDescription,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -64,7 +67,7 @@ const CardPanel = ({ index, planObj }) => {
   const onDeleteClick = async () => {
     const ok = window.confirm("계획을 삭제하시겠습니까?");
     if (ok) {
-      await dbService.collection("plans").doc(planObj.id).delete();
+      await userRef.collection("plans").doc(planObj.id).delete();
     }
   };
 

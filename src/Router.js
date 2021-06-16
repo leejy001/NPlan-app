@@ -5,7 +5,6 @@ import LoginPage from "./components/Pages/LoginPage";
 import RegisterPage from "./components/Pages/RegisterPage";
 
 const AppRouter = ({ userUid, isLoggedIn }) => {
-  console.log(isLoggedIn);
   return (
     <Switch>
       {isLoggedIn ? (

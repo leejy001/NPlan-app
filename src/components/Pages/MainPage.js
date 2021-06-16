@@ -5,11 +5,13 @@ import CardPanel from "../Panel/CardPanel";
 import AppNavbar from "../AppNavbar";
 import Footer from "../Footer";
 import Header from "../Header";
+import { useSelector } from "react-redux";
 
-const MainPage = ({ userUid }) => {
+const MainPage = () => {
   const [plans, setPlans] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(userUid);
+  const user = useSelector((state) => state.user.currentUser);
+  console.log(user.uid, "uid");
 
   const onSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -17,8 +19,9 @@ const MainPage = ({ userUid }) => {
 
   useEffect(() => {
     dbService
+      .collection("users")
+      .doc(user.uid)
       .collection("plans")
-      .where("createrId", "==", userUid)
       .orderBy("timestamp", "asc")
       .onSnapshot((snapshot) => {
         const planArray = snapshot.docs.map((doc) => ({
@@ -29,7 +32,7 @@ const MainPage = ({ userUid }) => {
           setPlans(planArray);
         }, 200);
       });
-  }, [userUid]);
+  }, [user.uid]);
 
   const CardList = (
     <div id="main-body">
