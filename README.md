@@ -45,3 +45,5 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 **`8. plan title 검색 기능 추가`**
 
 **`9. MainPage에서 CardList가 plan을 보여주는 방법 수정`**
+
+**`10. DB 구조 수정`**

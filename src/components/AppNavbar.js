@@ -4,7 +4,11 @@ import UserPanel from "./Panel/UserPanel";
 
 const AppNavbar = ({ onSearchChange }) => {
   return (
-    <Navbar expand="lg" style={{ backgroundColor: "#e9eef6" }}>
+    <Navbar
+      className="AppNav"
+      expand="lg"
+      style={{ backgroundColor: "#e9eef6" }}
+    >
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav

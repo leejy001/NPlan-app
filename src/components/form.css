@@ -125,10 +125,38 @@
   border-radius: 4px;
 }
 
+.AppNav {
+  animation: fadein 2s;
+}
+
 .header {
   height: 140px;
   width: 100%;
   background-color: #e9eef6;
+  animation: fadein 2s;
+}
+
+.header.plan {
+  height: 70px;
+  background-color: #e9eef6;
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.header .logo {
+  font-weight: bold;
+}
+
+.header.plan .logo {
+  font-weight: bold;
 }
 
 #main-footer {

@@ -1,15 +1,19 @@
-import { SET_PLAN } from "../types";
+import { CLEAR_PLAN, SET_PLAN } from "../types";
 
-const initialState = {
-  plan: null,
-  isLoading: true,
+const initialPlanState = {
+  currentplan: null,
 };
-export default function (state = initialState, action) {
+export default function (state = initialPlanState, action) {
   switch (action.type) {
     case SET_PLAN:
       return {
         ...state,
-        isLoading: false,
+        currentplan: action.payload,
+      };
+    case CLEAR_PLAN:
+      return {
+        ...state,
+        currentplan: null,
       };
     default:
       return state;

@@ -4,7 +4,9 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import firebase from "firebase/app";
 import { dbService } from "../../firebase";
 import "../form.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setPlan } from "../../redux/actions/planAction";
 
 const CardPanel = ({ index, planObj }) => {
   const colors = [
@@ -30,6 +32,8 @@ const CardPanel = ({ index, planObj }) => {
     },
   ];
 
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [newTitle, setNewTitle] = useState(planObj.title);
   const [newDescription, setNewDescription] = useState(planObj.description);
@@ -71,6 +75,11 @@ const CardPanel = ({ index, planObj }) => {
     }
   };
 
+  const onClickPlan = (planObj) => {
+    dispatch(setPlan(planObj));
+    history.push(`/plan/${planObj.id}`);
+  };
+
   return (
     <>
       <div className="card-wrapper mr-5">
@@ -78,7 +87,7 @@ const CardPanel = ({ index, planObj }) => {
           className="card-top"
           style={{ backgroundColor: colors[index % 5].primaryColor }}
         ></div>
-        <div className="plan-holder">
+        <div className="plan-holder" onClick={() => onClickPlan(planObj)}>
           <span
             className="card-holder"
             style={{

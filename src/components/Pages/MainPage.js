@@ -11,7 +11,6 @@ const MainPage = () => {
   const [plans, setPlans] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const user = useSelector((state) => state.user.currentUser);
-  console.log(user.uid, "uid");
 
   const onSearchChange = (e) => {
     setSearchTerm(e.target.value);

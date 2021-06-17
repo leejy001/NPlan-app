@@ -48,7 +48,7 @@ const Header = () => {
   return (
     <>
       <div className="header text-center">
-        <h2 style={{ fontWeight: "bold" }}>N Plan</h2>
+        <h2 className="logo">N Plan</h2>
         <Button onClick={onShow} variant="primary" className="mt-2">
           Create Plan
         </Button>

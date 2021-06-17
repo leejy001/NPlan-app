@@ -1,17 +1,17 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import MainPage from "./components/Pages/MainPage";
+import PlanPage from "./components/Pages/PlanPage";
 import LoginPage from "./components/Pages/LoginPage";
 import RegisterPage from "./components/Pages/RegisterPage";
 
-const AppRouter = ({ userUid, isLoggedIn }) => {
+const AppRouter = ({ isLoggedIn }) => {
   return (
     <Switch>
       {isLoggedIn ? (
         <>
-          <Route exact path="/">
-            <MainPage userUid={userUid} />
-          </Route>
+          <Route exact path="/" component={MainPage} />
+          <Route exact path="/plan/:id" component={PlanPage} />
         </>
       ) : (
         <>
