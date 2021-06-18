@@ -47,3 +47,7 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 **`9. MainPage에서 CardList가 plan을 보여주는 방법 수정`**
 
 **`10. DB 구조 수정`**
+
+**`11. planPage 추가 해당 Plan의 각 Section과 Section안의 TodoList를 보여준다.`**
+
+**`12. section 추가, 수정, 삭제 기능 구현`**
