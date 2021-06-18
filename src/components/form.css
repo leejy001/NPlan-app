@@ -207,3 +207,31 @@
   background-color: #f6f7f8;
   padding: 40px 100px;
 }
+
+.section-container {
+  height: auto;
+  width: auto;
+  float: left;
+}
+
+.section-panel {
+  display: inline-block;
+  width: 250px;
+  min-height: 40px;
+  margin: 0px 5px;
+  padding: 5px 10px;
+}
+
+.section-main {
+  display: block;
+  width: 230px;
+  min-height: 40px;
+}
+
+.section-panel .section-menu {
+  float: right;
+}
+
+.section-panel:hover {
+  border: 1px solid gray;
+}

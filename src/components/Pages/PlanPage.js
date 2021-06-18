@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { dbService } from "../../firebase";
 import firebase from "firebase";
+import "../form.css";
 import SectionPanel from "../Panel/SectionPanel";
 
 const PlanPage = () => {
   const user = useSelector((state) => state.user.currentUser);
   const plan = useSelector((state) => state.plan.currentplan);
-  console.log(plan);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [sections, setSections] = useState([]);
   const [section, setSection] = useState("");
@@ -22,18 +23,26 @@ const PlanPage = () => {
     .doc(plan.id);
 
   const onShow = () => setShow(true);
+  const onClose = () => setShow(false);
 
   useEffect(() => {
-    planRef.collection("sections").onSnapshot((snapshot) => {
-      const sectionArray = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setTimeout(() => {
-        setSections(sectionArray);
-      }, 200);
-    });
-  }, []);
+    dbService
+      .collection("users")
+      .doc(user.uid)
+      .collection("plans")
+      .doc(plan.id)
+      .collection("sections")
+      .orderBy("timestamp")
+      .onSnapshot((snapshot) => {
+        const sectionArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTimeout(() => {
+          setSections(sectionArray);
+        }, 200);
+      });
+  }, [user.uid, plan.id]);
 
   const addSection = async () => {
     const newSection = {
@@ -80,7 +89,7 @@ const PlanPage = () => {
           return false;
         })
         .map((section, index) => (
-          <SectionPanel key={section.id} index={index} planObj={section} />
+          <SectionPanel key={section.id} index={index} sectionObj={section} />
         ))}
     </div>
   );
@@ -95,9 +104,9 @@ const PlanPage = () => {
         </div>
         <h3 style={{ padding: "20px 0px" }}>{plan.title}</h3>
       </div>
-      <div style={{ margin: "50px 70px" }}>
+      <div style={{ margin: "50px 70px", width: "100%" }}>
         {SectionList}
-        <div className="add-section" style={{ width: "200px" }}>
+        <div className="add-section" style={{ width: "250px", float: "left" }}>
           {show ? (
             <div>
               <Form onSubmit={onSectionSubmit}>
@@ -109,20 +118,25 @@ const PlanPage = () => {
                     placeholder="섹션 입력"
                   />
                 </Form.Group>
-                <Button
-                  onClick={onSectionSubmit}
-                  variant="outline-primary"
-                  style={{ width: "200px" }}
-                >
-                  섹션 추가
-                </Button>
+                <div>
+                  <Button
+                    onClick={onSectionSubmit}
+                    variant="outline-primary"
+                    style={{ width: "170px", float: "left" }}
+                  >
+                    섹션 추가
+                  </Button>
+                  <Button onClick={onClose} style={{ marginLeft: "22px" }}>
+                    취소
+                  </Button>
+                </div>
               </Form>
             </div>
           ) : (
             <Button
               onClick={onShow}
               variant="outline-primary"
-              style={{ width: "200px" }}
+              style={{ width: "200px", float: "right", marginRight: "25px" }}
             >
               To do 추가
             </Button>
