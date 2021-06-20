@@ -209,23 +209,25 @@
 }
 
 .section-container {
-  height: auto;
-  width: auto;
-  float: left;
+  display: flex;
+  align-items: flex-start;
 }
 
 .section-panel {
-  display: inline-block;
+  border: 1px solid white;
   width: 250px;
-  min-height: 40px;
+  height: auto;
   margin: 0px 5px;
   padding: 5px 10px;
 }
 
 .section-main {
-  display: block;
   width: 230px;
   min-height: 40px;
+}
+
+.add-section {
+  float: right;
 }
 
 .section-panel .section-menu {
@@ -233,5 +235,58 @@
 }
 
 .section-panel:hover {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px lightgray;
+  transition-property: border, border-radius, box-shadow;
+  transition-duration: 0.5s;
+}
+
+.section-panel .add-todolist:hover {
+  color: #bf1650;
+}
+
+.todo-panel {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px lightgray;
+  height: 50px;
+  padding-top: 10px;
+  margin: 5px 0px;
+}
+
+.todo-panel:hover {
   border: 1px solid gray;
+  transition-property: border;
+  transition-duration: 0.5s;
+}
+
+.todo-panel .todo-edit {
+  visibility: hidden;
+}
+
+.todo-panel:hover .todo-edit {
+  visibility: visible;
+}
+
+.delete-check {
+  border: 0.5px solid gray;
+  width: 20px;
+  height: 20px;
+  border-radius: 75px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.delete-check:hover {
+  background-image: url(../asset/check.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.todo-title {
+  margin-left: 10px;
+  height: 30px;
+  width: 140px;
 }

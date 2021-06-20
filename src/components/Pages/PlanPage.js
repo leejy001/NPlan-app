@@ -95,7 +95,7 @@ const PlanPage = () => {
   );
 
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <div className="header plan d-flex">
         <div onClick={goMain}>
           <h2 className="logo" style={{ padding: "15px" }}>
@@ -105,45 +105,63 @@ const PlanPage = () => {
         <h3 style={{ padding: "20px 0px" }}>{plan.title}</h3>
       </div>
       <div style={{ margin: "50px 70px", width: "100%" }}>
-        {SectionList}
-        <div className="add-section" style={{ width: "250px", float: "left" }}>
-          {show ? (
-            <div>
-              <Form onSubmit={onSectionSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>섹션 이름</Form.Label>
-                  <Form.Control
-                    type="text"
-                    onChange={(e) => setSection(e.target.value)}
-                    placeholder="섹션 입력"
-                  />
-                </Form.Group>
-                <div>
-                  <Button
-                    onClick={onSectionSubmit}
-                    variant="outline-primary"
-                    style={{ width: "170px", float: "left" }}
-                  >
-                    섹션 추가
-                  </Button>
-                  <Button onClick={onClose} style={{ marginLeft: "22px" }}>
-                    취소
-                  </Button>
-                </div>
-              </Form>
-            </div>
-          ) : (
-            <Button
-              onClick={onShow}
-              variant="outline-primary"
-              style={{ width: "200px", float: "right", marginRight: "25px" }}
-            >
-              To do 추가
-            </Button>
-          )}
+        <div
+          style={{
+            position: "absolute",
+            right: "0",
+            display: "inline-flex",
+            overflow: "auto",
+            maxWidth: "95%",
+            top: "150px",
+            bottom: "0px",
+          }}
+        >
+          {SectionList}
+          <div
+            className="add-section"
+            style={{ width: "250px", position: "relative" }}
+          >
+            {show ? (
+              <div style={{ width: "300px" }}>
+                <Form
+                  onSubmit={onSectionSubmit}
+                  style={{ marginRight: "50px" }}
+                >
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>섹션 이름</Form.Label>
+                    <Form.Control
+                      type="text"
+                      onChange={(e) => setSection(e.target.value)}
+                      placeholder="섹션 입력"
+                    />
+                  </Form.Group>
+                  <div>
+                    <Button
+                      onClick={onSectionSubmit}
+                      variant="outline-primary"
+                      style={{ width: "170px", float: "left" }}
+                    >
+                      섹션 추가
+                    </Button>
+                    <Button onClick={onClose} style={{ marginLeft: "22px" }}>
+                      취소
+                    </Button>
+                  </div>
+                </Form>
+              </div>
+            ) : (
+              <Button
+                onClick={onShow}
+                variant="outline-primary"
+                style={{ width: "250px", marginRight: "50px" }}
+              >
+                섹션 추가
+              </Button>
+            )}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Form } from "react-bootstrap";
 import { BsTrash, BsPencil } from "react-icons/bs";
-import { GrFormAdd } from "react-icons/gr";
 import { useSelector } from "react-redux";
 import { dbService } from "../../firebase";
+import firebase from "firebase";
 import "../form.css";
+import TodoPanel from "./TodoPanel";
 
 function SectionPanel({ sectionObj }) {
   const user = useSelector((state) => state.user.currentUser);
@@ -19,6 +20,12 @@ function SectionPanel({ sectionObj }) {
 
   const onShow = () => setShow(true);
   const onClose = () => setShow(false);
+
+  const [todoShow, setTodoShow] = useState(false);
+  const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState("");
+
+  const onTodoShow = () => setTodoShow(true);
 
   const isFormValid = (newSection) => newSection;
 
@@ -43,11 +50,76 @@ function SectionPanel({ sectionObj }) {
   };
 
   const onDeleteClick = async () => {
-    const ok = window.confirm("계획을 삭제하시겠습니까?");
+    const ok = window.confirm("섹션을 삭제하시겠습니까?");
     if (ok) {
       await planRef.collection("sections").doc(sectionObj.id).delete();
     }
   };
+
+  useEffect(() => {
+    dbService
+      .collection("users")
+      .doc(user.uid)
+      .collection("plans")
+      .doc(plan.id)
+      .collection("sections")
+      .doc(sectionObj.id)
+      .collection("todos")
+      .orderBy("timestamp")
+      .onSnapshot((snapshot) => {
+        const sectionArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setTimeout(() => {
+          setTodos(sectionArray);
+        }, 200);
+      });
+  }, [user.uid, plan.id, sectionObj.id]);
+
+  const addTodo = async () => {
+    const newTodo = {
+      todoTitle: todo,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      createrId: user.uid,
+      createrName: user.displayName,
+    };
+
+    try {
+      await planRef
+        .collection("sections")
+        .doc(sectionObj.id)
+        .collection("todos")
+        .add(newTodo);
+      // 초기화
+      setTodo("");
+      setTodoShow(false);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const onTodoSubmit = (e) => {
+    e.preventDefault();
+    if (isTodoFormValid(todo)) {
+      addTodo();
+    }
+  };
+
+  const isTodoFormValid = (todo) => todo;
+
+  const TodoList = (
+    <div className="todo-container">
+      {todos.map((todo, index) => (
+        <TodoPanel
+          key={todo.id}
+          index={index}
+          todoObj={todo}
+          sectionObj={sectionObj}
+        />
+      ))}
+    </div>
+  );
 
   return (
     <div className="section-panel">
@@ -106,17 +178,32 @@ function SectionPanel({ sectionObj }) {
           </div>
         )}
       </div>
-      <div style={{ marginTop: "5px" }}>
-        <button
-          style={{
-            backgroundColor: "#ffffff",
-            border: "0",
-            outline: "0",
-          }}
-        >
-          <GrFormAdd />할 일 추가
-        </button>
-      </div>
+      {TodoList}
+      {todoShow ? (
+        <Form onSubmit={onTodoSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="text"
+              onChange={(e) => setTodo(e.target.value)}
+              placeholder="할 일 입력..."
+            />
+          </Form.Group>
+        </Form>
+      ) : (
+        <div style={{ marginTop: "5px" }}>
+          <button
+            onClick={onTodoShow}
+            className="add-todolist"
+            style={{
+              backgroundColor: "#ffffff",
+              border: "0",
+              outline: "0",
+            }}
+          >
+            + 할 일 추가
+          </button>
+        </div>
+      )}
     </div>
   );
 }
