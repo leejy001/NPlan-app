@@ -51,3 +51,6 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 **`11. planPage 추가 해당 Plan의 각 Section과 Section안의 TodoList를 보여준다.`**
 
 **`12. section 추가, 수정, 삭제 기능 구현`**
+
+**`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함 planPage의 전체적인 UI는 todoist를 따라가고 있지만`**
+**`todoList의 ModalComponent는 트렐로처럼 만들 예정`**
