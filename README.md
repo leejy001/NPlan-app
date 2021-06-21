@@ -34,7 +34,8 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 
 **`3. 로그인, 회원가입 기능 및 폼 구현`**
 
-**`4. MainPage의 AppNavbar 구현 간단한 user정보를 나타내고 dropdown을 이용하여 프로필 이미지 수정 및 로그아웃 기능 추가`**
+**`4. MainPage의 AppNavbar 구현 간단한 user정보를 나타내고 dropdown을 이용하여`**
+**`프로필 이미지 수정 및 로그아웃 기능 추가`**
 
 **`5. Header부분 Create Plan 기능 추가, 선택시 Plan title, description 입력 후 추가`**
 
@@ -52,5 +53,5 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 
 **`12. section 추가, 수정, 삭제 기능 구현`**
 
-**`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함 planPage의 전체적인 UI는 todoist를 따라가고 있지만`**
-**`todoList의 ModalComponent는 트렐로처럼 만들 예정`**
+**`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함`**
+**`planPage의 전체적인 UI는 todoist를 따라가고 있지만 todoList의 ModalComponent는 트렐로처럼 만들 예정`**

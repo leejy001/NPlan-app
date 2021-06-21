@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Dropdown, Form } from "react-bootstrap";
-import { BsPencil, BsTrash } from "react-icons/bs";
+import { Form } from "react-bootstrap";
+import { BsPencil } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { dbService } from "../../firebase";
+import TodoModal from "./TodoModal";
 
 function TodoPanel({ todoObj, sectionObj }) {
   const user = useSelector((state) => state.user.currentUser);
@@ -20,6 +21,15 @@ function TodoPanel({ todoObj, sectionObj }) {
 
   const onShow = () => {
     setShow(true);
+  };
+
+  const [modalShow, setModalShow] = useState(false);
+
+  const onModalShow = () => {
+    setModalShow(true);
+  };
+  const onModalClose = () => {
+    setModalShow(false);
   };
 
   const onNewTodoSubmit = async (e) => {
@@ -56,15 +66,23 @@ function TodoPanel({ todoObj, sectionObj }) {
           </Form.Group>
         </Form>
       ) : (
-        <div className="todo-panel">
-          <div className="delete-check" onClick={onDeleteClick}></div>
-          <div className="todo-title">{todoObj.todoTitle}</div>
-          <BsPencil
-            className="todo-edit"
-            onClick={onShow}
-            style={{ marginLeft: "10px", marginTop: "5px" }}
+        <>
+          <div className="todo-panel" onClick={onModalShow}>
+            <div className="delete-check" onClick={onDeleteClick}></div>
+            <div className="todo-title">{todoObj.todoTitle}</div>
+            <BsPencil
+              className="todo-edit"
+              onClick={onShow}
+              style={{ marginLeft: "10px", marginTop: "5px" }}
+            />
+          </div>
+          <TodoModal
+            show={modalShow}
+            onModalClose={onModalClose}
+            sectionObj={sectionObj}
+            todoObj={todoObj}
           />
-        </div>
+        </>
       )}
     </>
   );

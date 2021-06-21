@@ -80,6 +80,7 @@ function SectionPanel({ sectionObj }) {
   const addTodo = async () => {
     const newTodo = {
       todoTitle: todo,
+      todoContent: "",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       createrId: user.uid,
       createrName: user.displayName,
