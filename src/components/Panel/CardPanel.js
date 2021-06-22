@@ -41,7 +41,10 @@ const CardPanel = ({ index, planObj }) => {
   const userRef = dbService.collection("users").doc(user.uid);
 
   const onClose = () => setShow(false);
-  const onShow = () => setShow(true);
+  const onShow = (e) => {
+    e.stopPropagation();
+    setShow(true)
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +71,8 @@ const CardPanel = ({ index, planObj }) => {
 
   const isFormValid = (title, description) => title && description;
 
-  const onDeleteClick = async () => {
+  const onDeleteClick = async (e) => {
+    e.stopPropagation();
     const ok = window.confirm("계획을 삭제하시겠습니까?");
     if (ok) {
       await userRef.collection("plans").doc(planObj.id).delete();
@@ -111,7 +115,7 @@ const CardPanel = ({ index, planObj }) => {
         </div>
       </div>
       <Modal show={show} onHide={onClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>계획 수정</Modal.Title>
         </Modal.Header>
         <Modal.Body>

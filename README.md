@@ -55,3 +55,7 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 
 **`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함`**
 **`planPage의 전체적인 UI는 todoist를 따라가고 있지만 todoList의 ModalComponent는 트렐로처럼 만들 예정`**
+
+**`14. ModalComponent 내부에 react-Markdown을 이용하여 수정할 수 있도록 만들어놓음`**
+**`Todo를 새로 만들 때 빈 todoContent값을 미리 저장 시키고 Modal실행 시 저장된 todoContent를 띄어줌`**
+**`해당 todoContent를 수정할 수 있도록 만들어놓음`**

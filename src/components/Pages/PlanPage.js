@@ -104,11 +104,12 @@ const PlanPage = () => {
         </div>
         <h3 style={{ padding: "20px 0px" }}>{plan.title}</h3>
       </div>
-      <div style={{ margin: "50px 70px", width: "100%" }}>
+      <div>
         <div
           style={{
             position: "absolute",
-            right: "0",
+            left: "5%",
+            right: "0%",
             display: "inline-flex",
             overflow: "auto",
             maxWidth: "95%",
