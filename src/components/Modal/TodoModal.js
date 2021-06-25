@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { dbService } from "../../firebase";
-import MarkDownPanel from "./MarkDownPanel";
+import MarkDown from "./MarkDown";
 
 const TodoModal = ({ show, onModalClose, sectionObj, todoObj }) => {
   const user = useSelector((state) => state.user.currentUser);
@@ -37,13 +37,13 @@ const TodoModal = ({ show, onModalClose, sectionObj, todoObj }) => {
         {editShow ? (
           <div>
             <textarea
-              style={{ height: "300px", width: "470px" }}
+              style={{ width: "470px", minHeight: "300px" }}
               onChange={(e) => setNewTodoContent(e.target.value)}
               value={newTodoContent}
             />
           </div>
         ) : (
-          <MarkDownPanel todoContent={newTodoContent} />
+          <MarkDown todoContent={newTodoContent} />
         )}
       </Modal.Body>
       <Modal.Footer>

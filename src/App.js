@@ -14,7 +14,6 @@ const App = () => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        history.push("/");
         dispatch(setUser(user));
         setIsLoggedIn(true);
       } else {

@@ -51,6 +51,7 @@ const CardPanel = ({ index, planObj }) => {
     if (isFormValid(newTitle, newDescription)) {
       editPlan();
     }
+    onClose()
   };
 
   const editPlan = async () => {
@@ -60,10 +61,6 @@ const CardPanel = ({ index, planObj }) => {
         description: newDescription,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
-      // 초기화
-      setNewTitle("");
-      setNewDescription("");
-      setShow(false);
     } catch (error) {
       alert(error);
     }

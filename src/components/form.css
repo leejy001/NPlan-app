@@ -217,6 +217,7 @@
   border: 1px solid white;
   width: 250px;
   height: auto;
+  max-height: 750px;
   margin: 0px 5px;
   padding: 5px 10px;
 }
@@ -244,6 +245,30 @@
 
 .section-panel .add-todolist:hover {
   color: #bf1650;
+}
+
+.todo-container {
+  height: auto;
+  max-height: 650px;
+  overflow: hidden;
+}
+
+.todo-container:hover {
+  padding-right: 5px;
+  overflow: auto;
+}
+
+.todo-container::-webkit-scrollbar {
+  width: 5px;
+}
+.todo-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 10px;
+}
+.todo-container::-webkit-scrollbar-track {
+  background-color: lightgray;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
 }
 
 .todo-panel {

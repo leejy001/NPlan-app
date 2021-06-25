@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { BsPencil } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { dbService } from "../../firebase";
-import TodoModal from "./TodoModal";
+import TodoModal from "../Modal/TodoModal";
 
 function TodoPanel({ todoObj, sectionObj }) {
   const user = useSelector((state) => state.user.currentUser);
@@ -67,9 +67,9 @@ function TodoPanel({ todoObj, sectionObj }) {
         </Form>
       ) : (
         <>
-          <div className="todo-panel" onClick={onModalShow}>
+          <div className="todo-panel">
             <div className="delete-check" onClick={onDeleteClick}></div>
-            <div className="todo-title">{todoObj.todoTitle}</div>
+            <div className="todo-title" onClick={onModalShow}>{todoObj.todoTitle}</div>
             <BsPencil
               className="todo-edit"
               onClick={onShow}

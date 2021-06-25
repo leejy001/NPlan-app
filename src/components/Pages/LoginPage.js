@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { authService } from "../../firebase";
 import "../form.css";
 
 const LoginPage = () => {
+  const history = useHistory()
   const {
     register,
     formState: { errors },
@@ -17,6 +18,7 @@ const LoginPage = () => {
     try {
       setLoading(true);
       await authService.signInWithEmailAndPassword(data.email, data.password);
+      history.push('/')
     } catch (error) {
       setErrorFormSubmit(error.message);
       setLoading(false);
@@ -50,7 +52,7 @@ const LoginPage = () => {
           <p>비밀번호는 6자리 이상 입력하세요</p>
         )}
         {errorFormSubmit && <p>{errorFormSubmit}</p>}
-        <input type="submit" disabled={loading} />
+        <input type="submit" disabled={loading}/>
         <Link style={{ color: "gray", textDecoration: "none" }} to="/register">
           아직 아이디가 없다면...
         </Link>

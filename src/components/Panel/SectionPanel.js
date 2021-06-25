@@ -3,7 +3,7 @@ import { Button, Dropdown, Form } from "react-bootstrap";
 import { BsTrash, BsPencil } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { dbService } from "../../firebase";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "../form.css";
 import TodoPanel from "./TodoPanel";
 

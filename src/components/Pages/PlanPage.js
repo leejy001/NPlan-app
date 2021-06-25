@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { dbService } from "../../firebase";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import "../form.css";
 import SectionPanel from "../Panel/SectionPanel";
 
@@ -24,6 +24,10 @@ const PlanPage = () => {
 
   const onShow = () => setShow(true);
   const onClose = () => setShow(false);
+
+  const onSectionSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   useEffect(() => {
     dbService
@@ -80,9 +84,9 @@ const PlanPage = () => {
       {sections
         .filter((section) => {
           if (searchTerm === "") {
-            return plan;
+            return section;
           } else if (
-            section.title.toLowerCase().includes(searchTerm.toLowerCase())
+            section.sectionTitle.toLowerCase().includes(searchTerm.toLowerCase())
           ) {
             return section;
           }
@@ -105,6 +109,15 @@ const PlanPage = () => {
         <h3 style={{ padding: "20px 0px" }}>{plan.title}</h3>
       </div>
       <div>
+        <Form className="d-flex" style={{ marginRight: "20px" }}>
+          <FormControl
+            onChange={onSectionSearchChange}
+            type="search"
+            placeholder="Section Search..."
+            aria-label="Search"
+            style={{ marginLeft: "110px", marginTop: "20px", width:"300px" }}
+          />
+        </Form>
         <div
           style={{
             position: "absolute",
@@ -113,7 +126,7 @@ const PlanPage = () => {
             display: "inline-flex",
             overflow: "auto",
             maxWidth: "95%",
-            top: "150px",
+            top: "140px",
             bottom: "0px",
           }}
         >

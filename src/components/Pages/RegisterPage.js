@@ -1,10 +1,11 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { authService, dbService } from "../../firebase";
 import md5 from "md5";
 
 const RegisterPage = () => {
+  const history = useHistory()
   const {
     register,
     watch,
@@ -37,6 +38,7 @@ const RegisterPage = () => {
         .collection("users")
         .doc(createdUser.user.uid)
         .set(newUser);
+      history.push("/")
     } catch (error) {
       setErrorFormSubmit(error.message);
       setLoading(false);
