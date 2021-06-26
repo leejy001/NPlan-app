@@ -137,7 +137,7 @@
 }
 
 .header.plan {
-  height: 70px;
+  height: 50px;
   background-color: #e9eef6;
   animation: fadein 2s;
 }
@@ -314,4 +314,27 @@
   margin-left: 10px;
   height: 30px;
   width: 140px;
+}
+
+.importance {
+  margin-left: 5px;
+  margin-right: -5px;
+}
+
+.flag {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.calendar-btn {
+  border: 0;
+  outline: 0;
+  border-radius: 75px;
+  padding: 5px 11px;
+  font-size: 15px;
+  background-color: whitesmoke;
+}
+
+.calendar-btn:hover {
+  background-color: lightgray;
 }

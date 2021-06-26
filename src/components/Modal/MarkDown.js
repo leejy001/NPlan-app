@@ -30,7 +30,6 @@ function MarkDownPanel({ todoContent }) {
     );
   };
 
-  console.log(todoContent);
   return (
     <ReactMarkdown
       remarkPlugins={[gfm]}

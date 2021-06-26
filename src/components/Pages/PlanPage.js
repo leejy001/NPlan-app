@@ -86,7 +86,9 @@ const PlanPage = () => {
           if (searchTerm === "") {
             return section;
           } else if (
-            section.sectionTitle.toLowerCase().includes(searchTerm.toLowerCase())
+            section.sectionTitle
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())
           ) {
             return section;
           }
@@ -100,22 +102,34 @@ const PlanPage = () => {
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <div className="header plan d-flex">
+      <div className="header plan d-flex" style={{ justifyContent: "center" }}>
         <div onClick={goMain}>
-          <h2 className="logo" style={{ padding: "15px" }}>
+          <button
+            className="logo"
+            style={{
+              textAlign: "center",
+              fontSize: "25px",
+              marginTop: "5px",
+              backgroundColor: "#e9eef6",
+              border: "0",
+              outline: "0",
+            }}
+          >
             N Plan
-          </h2>
+          </button>
         </div>
-        <h3 style={{ padding: "20px 0px" }}>{plan.title}</h3>
       </div>
       <div>
         <Form className="d-flex" style={{ marginRight: "20px" }}>
+          <h4 style={{ marginLeft: "110px", padding: "20px 0px" }}>
+            {plan.title}
+          </h4>
           <FormControl
             onChange={onSectionSearchChange}
             type="search"
             placeholder="Section Search..."
             aria-label="Search"
-            style={{ marginLeft: "110px", marginTop: "20px", width:"300px" }}
+            style={{ margin: "20px 30px", width: "250px" }}
           />
         </Form>
         <div
