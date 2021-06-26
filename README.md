@@ -59,3 +59,5 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 **`15. 페이지 새로 고침 시 MainPage로 이동하는 이슈 인증 시 history.push('/')으로 이동하는 부분 때문에 문제가 생겼었다. 하지만 내가 현재 있는 PlanPage의 정보가 따로 저장되어 있지 않아 새로 고침시 데이터가 삭제되는 이슈, redux-persist를 이용하여 이슈 해결 `**
 
 **`16. Todo 추가 시 중요도 선택하는 기능 추가, TodoModal에서 react-datepicker를 이용하여 시작 날짜와 종료 날짜를 선택하는 기능 추가`**
+
+**`17. 중요도 순으로 radio button 클릭 시 각 세션당 해당 Todo만 보이도록 검색하는 기능 추가`**
