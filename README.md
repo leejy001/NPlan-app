@@ -34,8 +34,7 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 
 **`3. 로그인, 회원가입 기능 및 폼 구현`**
 
-**`4. MainPage의 AppNavbar 구현 간단한 user정보를 나타내고 dropdown을 이용하여 `**
-**`프로필 이미지 수정 및 로그아웃 기능 추가`**
+**`4. MainPage의 AppNavbar 구현 간단한 user정보를 나타내고 dropdown을 이용하여 프로필 이미지 수정 및 로그아웃 기능 추가`**
 
 **`5. Header부분 Create Plan 기능 추가, 선택시 Plan title, description 입력 후 추가`**
 
@@ -53,22 +52,10 @@ React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
 
 **`12. section 추가, 수정, 삭제 기능 구현`**
 
-**`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함 `**
+**`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함 planPage의 전체적인 UI는 todoist를 따라가고 있지만 todoList의 ModalComponent는 트렐로처럼 만들 예정`**
 
-**`planPage의 전체적인 UI는 todoist를 따라가고 있지만 todoList의 ModalComponent는 트렐로처럼 만들 예정`**
+**`14. ModalComponent 내부에 react-Markdown을 이용하여 수정할 수 있도록 만들어놓음 Todo를 새로 만들 때 빈 todoContent값을 미리 저장 시키고 Modal실행 시 저장된 todoContent를 띄어줌 해당 todoContent를 수정할 수 있도록 만들어놓음`**
 
-**`14. ModalComponent 내부에 react-Markdown을 이용하여 수정할 수 있도록 만들어놓음 `**
+**`15. 페이지 새로 고침 시 MainPage로 이동하는 이슈 인증 시 history.push('/')으로 이동하는 부분 때문에 문제가 생겼었다. 하지만 내가 현재 있는 PlanPage의 정보가 따로 저장되어 있지 않아 새로 고침시 데이터가 삭제되는 이슈, redux-persist를 이용하여 이슈 해결 `**
 
-**`Todo를 새로 만들 때 빈 todoContent값을 미리 저장 시키고 Modal실행 시 저장된 todoContent를 띄어줌 `**
-
-**`해당 todoContent를 수정할 수 있도록 만들어놓음`**
-
-**`15. 페이지 새로 고침 시 MainPage로 이동하는 이슈 `**
-
-**`인증 시 history.push('/')으로 이동하는 부분 때문에 문제가 생겼었다. `**
-
-**`하지만 내가 현재 있는 PlanPage의 정보가 따로 저장되어 있지 않아 새로 고침시 데이터가 삭제되는 이슈 `**
-
-**`redux-persist를 이용하여 이슈 해결 `**
-
-**`12. section 추가, 수정, 삭제 기능 구현`**
+**`16. Todo 추가 시 중요도 선택하는 기능 추가, TodoModal에서 react-datepicker를 이용하여 시작 날짜와 종료 날짜를 선택하는 기능 추가`**
