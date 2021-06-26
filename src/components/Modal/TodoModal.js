@@ -9,7 +9,6 @@ import DatePicker from "react-datepicker";
 import "../form.css";
 import moment from "moment";
 import ko from "date-fns/locale/ko";
-import "react-datepicker/dist/react-datepicker.css";
 
 const TodoModal = ({ show, onModalClose, sectionObj, todoObj }) => {
   const user = useSelector((state) => state.user.currentUser);

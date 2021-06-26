@@ -12,11 +12,14 @@ import moment from "moment";
 function SectionPanel({ sectionObj }) {
   const user = useSelector((state) => state.user.currentUser);
   const plan = useSelector((state) => state.plan.currentplan);
-  const planRef = dbService
+  const searchLevel = useSelector((state) => state.plan.currentLevel);
+  const sectionRef = dbService
     .collection("users")
     .doc(user.uid)
     .collection("plans")
-    .doc(plan.id);
+    .doc(plan.id)
+    .collection("sections")
+    .doc(sectionObj.id);
   const [show, setShow] = useState(false);
   const [newSection, setNewSection] = useState(sectionObj.sectionTitle);
 
@@ -42,7 +45,7 @@ function SectionPanel({ sectionObj }) {
 
   const editSection = async () => {
     try {
-      await planRef.collection("sections").doc(sectionObj.id).update({
+      await sectionRef.update({
         sectionTitle: newSection,
       });
       // 초기화
@@ -56,7 +59,7 @@ function SectionPanel({ sectionObj }) {
   const onDeleteClick = async () => {
     const ok = window.confirm("섹션을 삭제하시겠습니까?");
     if (ok) {
-      await planRef.collection("sections").doc(sectionObj.id).delete();
+      await sectionRef.delete();
     }
   };
 
@@ -71,12 +74,12 @@ function SectionPanel({ sectionObj }) {
       .collection("todos")
       .orderBy("timestamp")
       .onSnapshot((snapshot) => {
-        const sectionArray = snapshot.docs.map((doc) => ({
+        const todoArray = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setTimeout(() => {
-          setTodos(sectionArray);
+          setTodos(todoArray);
         }, 200);
       });
   }, [user.uid, plan.id, sectionObj.id]);
@@ -94,11 +97,7 @@ function SectionPanel({ sectionObj }) {
     };
 
     try {
-      await planRef
-        .collection("sections")
-        .doc(sectionObj.id)
-        .collection("todos")
-        .add(newTodo);
+      await sectionRef.collection("todos").add(newTodo);
       // 초기화
       setTodo("");
       setTodoShow(false);
@@ -118,14 +117,23 @@ function SectionPanel({ sectionObj }) {
 
   const TodoList = (
     <div className="todo-container">
-      {todos.map((todo, index) => (
-        <TodoPanel
-          key={todo.id}
-          index={index}
-          todoObj={todo}
-          sectionObj={sectionObj}
-        />
-      ))}
+      {todos
+        .filter((todo) => {
+          if (searchLevel === "all") {
+            return todo;
+          } else if (searchLevel === todo.todoLevel) {
+            return todo;
+          }
+          return false;
+        })
+        .map((todo, index) => (
+          <TodoPanel
+            key={todo.id}
+            index={index}
+            todoObj={todo}
+            sectionObj={sectionObj}
+          />
+        ))}
     </div>
   );
 
@@ -239,7 +247,7 @@ function SectionPanel({ sectionObj }) {
                 checked={level === "none"}
                 onChange={(e) => setLevel(e.target.value)}
               />
-              <RiFlag2Fill className="flag" />
+              <RiFlag2Fill className="flag" title="전체" />
             </div>
             <div>
               <Button

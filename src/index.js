@@ -10,23 +10,25 @@ import { PersistGate } from "redux-persist/integration/react";
 import ReduxThunk from "redux-thunk";
 import Reducer from "./redux/reducers";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const createStorewithMiddleware = applyMiddleware(
   promiseMiddleware,
   ReduxThunk
 )(createStore);
 
-export const store = createStorewithMiddleware(Reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-export const persistore = persistStore(store)
+export const store = createStorewithMiddleware(
+  Reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+export const persistore = persistStore(store);
 
 ReactDOM.render(
-  <Provider
-    store={store}
-  >
-    <PersistGate persistor={persistore} >
-    <Router>
-      <App />
-    </Router>
+  <Provider store={store}>
+    <PersistGate persistor={persistore}>
+      <Router>
+        <App />
+      </Router>
     </PersistGate>
   </Provider>,
   document.getElementById("root")

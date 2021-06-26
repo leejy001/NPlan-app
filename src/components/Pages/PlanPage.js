@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { dbService } from "../../firebase";
 import firebase from "firebase/app";
 import "../form.css";
 import SectionPanel from "../Panel/SectionPanel";
+import { RiFlag2Fill } from "react-icons/ri";
+import { setSearch } from "../../redux/actions/planAction";
 
 const PlanPage = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser);
   const plan = useSelector((state) => state.plan.currentplan);
 
@@ -15,6 +18,7 @@ const PlanPage = () => {
   const [sections, setSections] = useState([]);
   const [section, setSection] = useState("");
   const [show, setShow] = useState(false);
+  const [searchLevel, setSearchLevel] = useState("all");
   const history = useHistory();
   const planRef = dbService
     .collection("users")
@@ -27,6 +31,10 @@ const PlanPage = () => {
 
   const onSectionSearchChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const onSearchLevelChange = (e) => {
+    setSearchLevel(e.target.value);
   };
 
   useEffect(() => {
@@ -46,7 +54,8 @@ const PlanPage = () => {
           setSections(sectionArray);
         }, 200);
       });
-  }, [user.uid, plan.id]);
+    dispatch(setSearch(searchLevel));
+  }, [user.uid, plan.id, dispatch, searchLevel]);
 
   const addSection = async () => {
     const newSection = {
@@ -129,8 +138,54 @@ const PlanPage = () => {
             type="search"
             placeholder="Section Search..."
             aria-label="Search"
-            style={{ margin: "20px 30px", width: "250px" }}
+            style={{ margin: "20px 20px", width: "250px" }}
           />
+          <div className="d-flex" style={{ padding: "25px 0px" }}>
+            <Form.Check
+              className="importance"
+              value="red"
+              type="radio"
+              checked={searchLevel === "red"}
+              onChange={onSearchLevelChange}
+            />
+            <RiFlag2Fill
+              className="flag"
+              style={{ color: "red" }}
+              title="중요"
+            />
+            <Form.Check
+              className="importance"
+              value="orange"
+              type="radio"
+              checked={searchLevel === "orange"}
+              onChange={onSearchLevelChange}
+            />
+            <RiFlag2Fill
+              className="flag"
+              style={{ color: "orange" }}
+              title="보통"
+            />
+            <Form.Check
+              className="importance"
+              value="green"
+              type="radio"
+              checked={searchLevel === "green"}
+              onChange={onSearchLevelChange}
+            />
+            <RiFlag2Fill
+              className="flag"
+              style={{ color: "green" }}
+              title="낮음"
+            />
+            <Form.Check
+              className="importance"
+              value="all"
+              type="radio"
+              checked={searchLevel === "all"}
+              onChange={onSearchLevelChange}
+            />
+            <RiFlag2Fill className="flag" title="전체" />
+          </div>
         </Form>
         <div
           style={{

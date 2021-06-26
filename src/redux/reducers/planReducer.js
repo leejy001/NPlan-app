@@ -1,8 +1,10 @@
-import { CLEAR_PLAN, SET_PLAN } from "../types";
+import { SET_SEARCH, SET_PLAN } from "../types";
 
 const initialPlanState = {
   currentplan: null,
+  currentLevel: "all",
 };
+
 export default function (state = initialPlanState, action) {
   switch (action.type) {
     case SET_PLAN:
@@ -10,10 +12,10 @@ export default function (state = initialPlanState, action) {
         ...state,
         currentplan: action.payload,
       };
-    case CLEAR_PLAN:
+    case SET_SEARCH:
       return {
         ...state,
-        currentplan: null,
+        currentLevel: action.payload,
       };
     default:
       return state;

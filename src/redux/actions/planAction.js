@@ -1,4 +1,4 @@
-import { CLEAR_PLAN, SET_PLAN } from "../types";
+import { SET_SEARCH, SET_PLAN } from "../types";
 
 export const setPlan = (plan) => {
   return {
@@ -7,8 +7,9 @@ export const setPlan = (plan) => {
   };
 };
 
-export const clearPlan = () => {
+export const setSearch = (level) => {
   return {
-    type: CLEAR_PLAN,
+    type: SET_SEARCH,
+    payload: level,
   };
 };
