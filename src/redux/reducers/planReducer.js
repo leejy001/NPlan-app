@@ -5,7 +5,7 @@ const initialPlanState = {
   currentLevel: "all",
 };
 
-export default function (state = initialPlanState, action) {
+export default function planReducer(state = initialPlanState, action) {
   switch (action.type) {
     case SET_PLAN:
       return {
