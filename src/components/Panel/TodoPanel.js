@@ -57,9 +57,9 @@ function TodoPanel({ todoObj, sectionObj }) {
     const ok = window.confirm(`${todoObj.todoTitle}를 삭제하시겠습니까?`);
     if (ok) {
       await sectionRef.collection("todos").doc(todoObj.id).delete();
-      window.alert("삭제 취소");
-    } else {
       window.alert("삭제 확인");
+    } else {
+      window.alert("삭제 취소");
     }
   };
 
