@@ -70,7 +70,7 @@ const UserPanel = () => {
       </div>
       <input
         onChange={uploadImage}
-        accept="imgge/jpeg, image/png"
+        accept="image/jpeg, image/png, image/jpg"
         type="file"
         style={{ display: "none" }}
         ref={inputOpenImageRef}

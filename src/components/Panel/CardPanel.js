@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import firebase from "firebase/app";
-import { dbService } from "../../firebase";
+import { dbService, functionService } from "../../firebase";
 import "../form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -43,7 +43,7 @@ const CardPanel = ({ index, planObj }) => {
   const onClose = () => setShow(false);
   const onShow = (e) => {
     e.stopPropagation();
-    setShow(true)
+    setShow(true);
   };
 
   const onSubmit = (e) => {
@@ -51,7 +51,7 @@ const CardPanel = ({ index, planObj }) => {
     if (isFormValid(newTitle, newDescription)) {
       editPlan();
     }
-    onClose()
+    onClose();
   };
 
   const editPlan = async () => {
