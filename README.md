@@ -74,7 +74,7 @@
      </th>
           <th align="center">
        <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125302972-66c11a80-e367-11eb-95a2-0c1a65e40087.gif"/>
-       <br><br>[Section 삭제]
+       <br><br>[Section 수정]
      </th>
   </tr>
 </table>
