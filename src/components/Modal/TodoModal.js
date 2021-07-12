@@ -49,11 +49,9 @@ const TodoModal = ({ show, onModalClose, sectionObj, todoObj }) => {
 
   return (
     <Modal show={show} onHide={onModalClose}>
-      <Modal.Header style={{ height: "50px" }}>
-        <div style={{ width: "100%", textAlign: "center" }}>
-          <Modal.Title style={{ fontSize: "30px" }}>
-            {todoObj.todoTitle}
-          </Modal.Title>
+      <Modal.Header style={{ minHeight: "50px" }}>
+        <div className="todo-modal-title" style={{ width: "100%" }}>
+          <Modal.Title>{todoObj.todoTitle}</Modal.Title>
         </div>
       </Modal.Header>
       <Modal.Body style={{ minHeight: "300px" }}>

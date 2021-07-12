@@ -5,7 +5,7 @@ import { authService, dbService } from "../../firebase";
 import md5 from "md5";
 
 const RegisterPage = () => {
-  const history = useHistory()
+  const history = useHistory();
   const {
     register,
     watch,
@@ -31,6 +31,7 @@ const RegisterPage = () => {
         )}?d=identicon`,
       });
       const newUser = {
+        _id: createdUser.user.uid,
         name: createdUser.user.displayName,
         image: createdUser.user.photoURL,
       };
@@ -38,7 +39,7 @@ const RegisterPage = () => {
         .collection("users")
         .doc(createdUser.user.uid)
         .set(newUser);
-      history.push("/")
+      history.push("/");
     } catch (error) {
       setErrorFormSubmit(error.message);
       setLoading(false);

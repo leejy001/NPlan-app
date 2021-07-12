@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Modal, Button } from "react-bootstrap";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import firebase from "firebase/app";
-import { dbService, functionService } from "../../firebase";
+import { dbService } from "../../firebase";
 import "../form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -98,7 +98,7 @@ const CardPanel = ({ index, planObj }) => {
           >
             {planObj.title}
           </span>
-          <p>{planObj.description}</p>
+          <p className="plan-description">{planObj.description}</p>
           <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
             <FaEdit
               onClick={onShow}

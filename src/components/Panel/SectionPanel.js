@@ -166,10 +166,8 @@ function SectionPanel({ sectionObj }) {
             </Form>
           </div>
         ) : (
-          <div>
-            <div style={{ marginTop: "5px", float: "left" }}>
-              {sectionObj.sectionTitle}
-            </div>
+          <div className="d-flex justify-content-between">
+            <div className="section-title">{sectionObj.sectionTitle}</div>
             <Dropdown>
               <Dropdown.Toggle
                 className="section-menu"
