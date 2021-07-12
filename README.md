@@ -1,63 +1,137 @@
-# NPlan App 프로젝트
+<h1 align="center">Welcome to Nplan ✨</h1>
+<div>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux Thunk-999999?style=flat-square&logo=Redux-Thunk&logoColor=white"/>
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white"/>
 
-### firebase, React, Redux-Thunk
+<div>
+ <img alt="React" src="https://img.shields.io/badge/React-17.0.2-red.svg"> <img alt="Redux" src="https://img.shields.io/badge/Redux-4.1.0-blue.svg"> <img alt="ReduxThunk" src="https://img.shields.io/badge/Redux Thunk-2.3.0-blue.svg">  <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-5.0.1-blueviolet.svg">  <img alt="Firebase" src="https://img.shields.io/badge/Firebase-8.6.5-green.svg"> <img alt="platform" src="https://img.shields.io/badge/platform-Web-orange.svg">
 
-React.js 환경 내에서 **redux**와 **redux-thunk**를 이용하여 구성
+### 🔥 Motivation
 
-또한 **firebase**를 이용하여 간단한 Backend 시스템을 구축하여 연동한다.
+> React + Firebase 기술을 공부하기 위해 시작한 프로젝트입니다.
+> Firebase의 Firestore와 Storage를 이용하여 DB를 저장하고 호스팅을 했습니다.
 
-## Redux
+## 서비스 소개
 
-**action** : 모델의 행위를 정의.
-**reducer** : 행위에 대한 응답으로 **store** 변경 반환.
+### [Nplan](https://nplan-app.web.app/) 일정관리 서비스 프로젝트
 
-- **index.js** 에서 **stroe** 정의 및 주입 (react-redux 모듈 이용)
-- 비동기 로직 처리에 대한 솔루션 없음
+- 나만의 일정관리 서비스.
+- react-markdown를 이용한 간단한 문서 편집 기능 제공합니다.
+- Plan, section 별로 검색 기능을 제공해 유용한 정보를 쉽고 빠르게 찾을 수 있습니다.
 
-## Redux-Thunk
+## UI
 
-**Redux**의 부족한 부분을 채워주는 기능을 담당하는 미들웨어 (네트워크 요청 기능)
-**Thunk**는 **action**의 **dispatch**를 지연시키는데 사용될 수 있으며,
-특정 조건이 충족되는 경우에만 **dispatch**할 수 있다.
+### 1) 로그인과 회원가입
 
-## Firebase
+<table>
+   <tr>
+     <th align="center">
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125302040-8d328600-e366-11eb-9cae-d94553871f1e.gif"/>
+       <br><br>[로그인]
+     </th>
+     <th align="center">
+       <img width="400" alt="2" src="https://user-images.githubusercontent.com/49552804/125302045-8e63b300-e366-11eb-923a-dc3836caf8a3.gif"/>
+       <br><br>[회원가입] 
+    </th>
+  </tr>
+</table>
 
-클라우드 데이터베이스 서비스 및 기능 제공
+- 로그인/회원가입 성공 시 MainPage로 넘어감
 
-- **firebase** javascript 모듈 이용. (auth, storage, firestore)
+### 2) Plan 추가/수정/삭제
 
-## 진행 사항
+<table>
+   <tr>
+     <th align="center">
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125302648-1b0e7100-e367-11eb-8520-fe011262dfdb.gif"/>
+       <br><br>[Plan 추가]
+     </th>
+          <th align="center">
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125302656-1c3f9e00-e367-11eb-99db-da2a8673778b.gif"/>
+       <br><br>[Plan 수정]
+     </th>
+     <th align="center">
+       <img width="400" alt="2" src="https://user-images.githubusercontent.com/49552804/125302664-1ea1f800-e367-11eb-8db7-b84722386b08.gif"/>
+       <br><br>[Plan 삭제] 
+    </th>
+  </tr>
+</table>
 
-**`1. CRA & 초기 셋팅`**
+- Create plan 버튼을 누르면 계획 추가하고 Plan Card 우측 하단의 수정 삭제 버튼을 통해 수정/삭제
+- 모달을 통해 계획을 추가 및 수정
+  - react-bootstrap 이용
+- 삭제 시 Alert을 통해 한번 더 확인한 뒤에 삭제
 
-**`2. firebase를 이용하여 로그인 시 인증이 제대로 되는지 확인`**
+### 3) Section 추가/수정/삭제
 
-**`3. 로그인, 회원가입 기능 및 폼 구현`**
+<table>
+   <tr>
+     <th align="center">
+       <img width="375" alt="1" src="https://user-images.githubusercontent.com/49552804/125302968-658fed80-e367-11eb-9a0e-e0b0fb7af01c.gif"/>
+       <br><br>[Section 추가]
+     </th>
+          <th align="center">
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125302972-66c11a80-e367-11eb-95a2-0c1a65e40087.gif"/>
+       <br><br>[Section 삭제]
+     </th>
+  </tr>
+</table>
 
-**`4. MainPage의 AppNavbar 구현 간단한 user정보를 나타내고 dropdown을 이용하여 프로필 이미지 수정 및 로그아웃 기능 추가`**
+- 섹션 추가 버튼을 통해 섹션을 새로 추가
+- 섹션 제목 옆의 dropdown 버튼을 통해 섹션 수정/삭제
 
-**`5. Header부분 Create Plan 기능 추가, 선택시 Plan title, description 입력 후 추가`**
+### 4) Todo 추가/수정/삭제
 
-**`6. CardList 추가, firebase를 이용하여 실시간으로 보여주는 방식으로 구현`**
+<table>
+   <tr>
+     <th align="center">
+       <img width="375" height="250" alt="1" src="https://user-images.githubusercontent.com/49552804/125303924-21511d00-e368-11eb-976d-ef886763cfd5.gif"/>
+       <br><br>[Todo 추가]
+     </th>
+        <th align="center">
+       <img width="375" height="250" alt="1" src="https://user-images.githubusercontent.com/49552804/125303929-21e9b380-e368-11eb-815e-0c32a59972ea.gif"/>
+       <br><br>[Todo 수정]
+     </th>
+          <th align="center">
+       <img width="375" height="250" alt="1" src="https://user-images.githubusercontent.com/49552804/125303931-22824a00-e368-11eb-91d6-2e0d414fd50c.gif"/>
+       <br><br>[Todo 삭제]
+     </th>
+  </tr>
+</table>
 
-**`7. 카드부분 Plan Edit, Delete 기능 추가`**
+- 할 일 추가 버튼 클릭 시 Todo title 입력하고 추가
+- 해당 TodoItem에 마우스 hover 시 edit 버튼 노출되고 클릭하여 Todo title 수정
+- TodoItem의 체크 버튼 누르면 TodoItem 삭제
 
-**`8. plan title 검색 기능 추가`**
+### 5) Search
 
-**`9. MainPage에서 CardList가 plan을 보여주는 방법 수정`**
+<table>
+   <tr>
+     <th align="center">
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125305240-28c4f600-e369-11eb-9a90-fe799833d488.gif"/>
+       <br><br>[Section title 검색]
+     </th>
+        <th align="center">
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/49552804/125305243-29f62300-e369-11eb-88e4-f4ae0076242a.gif"/>
+       <br><br>[중요도 검색]
+  </tr>
+</table>
 
-**`10. DB 구조 수정`**
+- Section search에서 Input 값의 변화를 실시간으로 감지하여 입력 즉시 검색 데이터를 받아옴
+- 중요도(high/medium/easy/all) 라디오 버튼 클릭 시 섹션 별로 해당 중요도의 TodoItem이 노출
 
-**`11. planPage 추가 해당 Plan의 각 Section과 Section안의 TodoList를 보여준다.`**
+![npplansearch](https://user-images.githubusercontent.com/49552804/125305248-29f62300-e369-11eb-987c-8d4e3ea5eba3.gif)
 
-**`12. section 추가, 수정, 삭제 기능 구현`**
+- Plan search, Input 값의 변화를 실시간으로 감지하여 입력 즉시 검색 데이터를 받아옴
 
-**`13. section내부의 todoList 추가 삭제 구현 css작업 때문에 시간을 많이 소모함 planPage의 전체적인 UI는 todoist를 따라가고 있지만 todoList의 ModalComponent는 트렐로처럼 만들 예정`**
+## [활용 기술](https://github.com/leejy001/NPlan-app/wiki/%ED%99%9C%EC%9A%A9-%EA%B8%B0%EC%88%A0)
 
-**`14. ModalComponent 내부에 react-Markdown을 이용하여 수정할 수 있도록 만들어놓음 Todo를 새로 만들 때 빈 todoContent값을 미리 저장 시키고 Modal실행 시 저장된 todoContent를 띄어줌 해당 todoContent를 수정할 수 있도록 만들어놓음`**
+## [개발 일지](https://github.com/leejy001/NPlan-app/wiki/%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80)
 
-**`15. 페이지 새로 고침 시 MainPage로 이동하는 이슈 인증 시 history.push('/')으로 이동하는 부분 때문에 문제가 생겼었다. 하지만 내가 현재 있는 PlanPage의 정보가 따로 저장되어 있지 않아 새로 고침시 데이터가 삭제되는 이슈, redux-persist를 이용하여 이슈 해결 `**
+## Todo
 
-**`16. Todo 추가 시 중요도 선택하는 기능 추가, TodoModal에서 react-datepicker를 이용하여 시작 날짜와 종료 날짜를 선택하는 기능 추가`**
-
-**`17. 중요도 순으로 radio button 클릭 시 각 세션당 해당 Todo만 보이도록 검색하는 기능 추가`**
+- [ ] DB 구조 수정
+- [ ] Firebase functions 적용
+- [ ] 협업 기능 추가
