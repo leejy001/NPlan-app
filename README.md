@@ -105,7 +105,28 @@
 - 해당 TodoItem에 마우스 hover 시 edit 버튼 노출되고 클릭하여 Todo title 수정
 - TodoItem의 체크 버튼 누르면 TodoItem 삭제
 
-### 5) Search
+### 5) Todo markdown 추가/수정
+
+<table>
+   <tr>
+     <th align="center">
+       <img width="375" height="250" alt="1" src="https://user-images.githubusercontent.com/49552804/125377541-25148c00-e3c8-11eb-8433-d6f12506941a.gif"/>
+       <br><br>[markdown 추가]
+     </th>
+     <th align="center">
+       <img width="375" height="250" alt="1" src="https://user-images.githubusercontent.com/49552804/125377538-247bf580-e3c8-11eb-958c-ec8cf05f17f7.gif"/>
+       <br><br>[markdown 수정]
+     </th>
+  </tr>
+</table>
+
+- TodoItem 클릭 시 markdown 편집 가능한 Modal창 출력
+- markdown을 추가하려면 수정 버튼을 클릭 후 기간(날짜) 및 내용 작성
+- markdown을 수정하려면 수정 버튼을 클릭 후 기간(날짜) 및 내용 수정
+  - react-bootstrap 이용
+  - react-datepicker 이용
+
+### 6) Search
 
 <table>
    <tr>
